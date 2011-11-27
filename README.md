@@ -83,10 +83,10 @@ That can be achieved either using `rlwrap` or JLine. Both options are described 
 1. Place the JLine jar in `$CLOJURESCRIPT_HOME/lib`
 1. Change `$CLOJURESCRIPT_HOME/script/repl` slightly, by adding the `jline.ConsoleRunner` before `clojure.main`:
 
-```diff
--java -server -cp $CLJSC_CP clojure.main
-+java -server -cp $CLJSC_CP jline.ConsoleRunner clojure.main
-```
+    ```diff
+    -java -server -cp $CLJSC_CP clojure.main
+    +java -server -cp $CLJSC_CP jline.ConsoleRunner clojure.main
+    ```
 
 #### Compile automatically (easy and convenient)
 
