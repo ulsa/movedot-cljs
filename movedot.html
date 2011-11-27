@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Move the ball - ClojureScript</title>
+  </head>
+  <body>
+    Use your up / down / right / left arrows to move the ball
+    <div id="shapes"></div>
+
+    <script type="text/javascript" src="out/goog/base.js"></script>
+    <script type="text/javascript" src="movedot.js"></script>
+    <script type="text/javascript">
+      goog.require('jaypoop_cljs.movedot');
+    </script>
+    <script>
+      jaypoop_cljs.movedot.main();
+    </script>
+  </body>
+</html>
