@@ -66,9 +66,9 @@ Starts the JVM only once, when the REPL is started, and compiles pretty quickly 
 machine). However, you must manually trigger a re-compile. You'll want command-line editing in the REPL, though.
 That can be achieved either using `rlwrap` or JLine. Both options are described later.
 
-        % $CLOJURESCRIPT_HOME/script/repl
-        user=> (require '[cljs.closure :as cljsc])
-        user=> (cljsc/build "src" {:output-dir "out" :output-to "movedot.js"})
+    % $CLOJURESCRIPT_HOME/script/repl
+    user=> (require '[cljs.closure :as cljsc])
+    user=> (cljsc/build "src" {:output-dir "out" :output-to "movedot.js"})
 
 ##### rlwrap
 
@@ -83,8 +83,10 @@ That can be achieved either using `rlwrap` or JLine. Both options are described 
 1. Place the JLine jar in `$CLOJURESCRIPT_HOME/lib`
 1. Change `$CLOJURESCRIPT_HOME/script/repl` slightly, by adding the `jline.ConsoleRunner` before `clojure.main`:
 
-        -java -server -cp $CLJSC_CP clojure.main
-        +java -server -cp $CLJSC_CP jline.ConsoleRunner clojure.main
+```diff
+-java -server -cp $CLJSC_CP clojure.main
++java -server -cp $CLJSC_CP jline.ConsoleRunner clojure.main
+```
 
 #### Compile automatically (easy and convenient)
 
