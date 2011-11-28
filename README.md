@@ -5,9 +5,11 @@ show how to write ClojureScript applications that interact with the keyboard and
 
 Inspiration from [teebes.com](http://teebes.com/blog/19/playing-with-googles-closure-js-library).
 
-The state is kept in a single atom called `dot`, which is a map containing the x and y coordinates of the ball, plus
-the current graphics of the ball. Hitting an arrow key will change the state of the x/y coordinates and trigger a
-redraw of the ball, which will in turn change the state of the current graphics.
+The state is kept in a single atom called `dot`, which is a map
+containing the x and y coordinates of the ball, plus the graphics of
+the ball. Hitting an arrow key will change the state of the x/y
+coordinates, and then change the center of the graphics of the ball
+accordingly. This will effectively redraw the ball in its new position.
 
 ## Usage
 

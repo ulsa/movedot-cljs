@@ -11,9 +11,6 @@
 (def dot-fill (graphics/SolidFill. "blue"))
 (def dot-stroke (graphics/Stroke. 1 "black"))
 
-(def g (doto (graphics/createGraphics "200" "150")
-         (.render (dom/getElement "shapes"))))
-
 ;; the dot's initial position
 (def dot (atom {:x 1 :y 1}))
 
@@ -24,14 +21,16 @@
 (def num-rows 3)
 (def num-cols 4)
 
+(def g (doto (graphics/createGraphics "200" "150")
+         (.render (dom/getElement "shapes"))))
+
 ;; call if the dot's position changes
 (defn redraw-dot []
-  (let [{:keys [x y]} @dot
+  (let [{:keys [x y graphics]} @dot
         hw (/ width 2)
         x-pos (+ margin (* x size) hw)
-        y-pos (+ margin (* y size) hw)
-        dg (@dot :graphics)]
-    (.setCenter dg x-pos y-pos)))
+        y-pos (+ margin (* y size) hw)]
+    (.setCenter graphics x-pos y-pos)))
 
 ;; key event handler
 (def key-handler (events/KeyHandler. js/document))
@@ -52,14 +51,14 @@
         y-pos (+ margin (* y size))]
     (.drawRect g x-pos y-pos width width square-stroke square-fill)))
 
-;; draw the dot
+;; draw the initial dot
 (let [{:keys [x y]} @dot
       hw (/ width 2)
       x-pos (+ margin (* x size) hw)
       y-pos (+ margin (* y size) hw)
       qw (/ width 4)
-      dg (.drawEllipse g x-pos y-pos qw qw dot-stroke dot-fill)]
-  (swap! dot assoc :graphics dg))
+      graphics (.drawEllipse g x-pos y-pos qw qw dot-stroke dot-fill)]
+  (swap! dot assoc :graphics graphics))
 
 ;; put everything together
 (defn ^:export main []
